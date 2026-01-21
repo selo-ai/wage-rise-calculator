@@ -170,6 +170,16 @@ const SalaryCalculator = () => {
                     {result.totalPercentageIncrease.toFixed(1)}
                     <span className="text-muted-foreground">)</span>
                   </div>
+                  
+                  {/* Monthly Salary */}
+                  <div className="mt-4 pt-4 border-t border-primary/20">
+                    <div className="text-sm text-muted-foreground mb-1">
+                      Tahmini Aylık Maaş <span className="text-xs">(×225 saat)</span>
+                    </div>
+                    <div className="text-2xl font-bold text-foreground">
+                      {formatCurrency(result.final * 225)} TL
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
