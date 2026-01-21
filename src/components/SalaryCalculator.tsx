@@ -11,6 +11,11 @@ interface CalculationResult {
   flatIncrease: number;
   totalIncrease: number;
   totalPercentageIncrease: number;
+  // Second period
+  secondPeriodIncrease: number;
+  secondPeriodFinal: number;
+  secondPeriodTotalIncrease: number;
+  secondPeriodTotalPercentage: number;
 }
 
 const SalaryCalculator = () => {
@@ -40,6 +45,12 @@ const SalaryCalculator = () => {
     const totalIncrease = final - wage;
     const totalPercentageIncrease = ((final - wage) / wage) * 100;
 
+    // Second period: %13 increase
+    const secondPeriodIncrease = final * 0.13;
+    const secondPeriodFinal = final + secondPeriodIncrease;
+    const secondPeriodTotalIncrease = secondPeriodFinal - wage;
+    const secondPeriodTotalPercentage = ((secondPeriodFinal - wage) / wage) * 100;
+
     return {
       original: wage,
       afterImprovement,
@@ -50,6 +61,10 @@ const SalaryCalculator = () => {
       flatIncrease,
       totalIncrease,
       totalPercentageIncrease,
+      secondPeriodIncrease,
+      secondPeriodFinal,
+      secondPeriodTotalIncrease,
+      secondPeriodTotalPercentage,
     };
   }, [hourlyWage]);
 
@@ -178,6 +193,41 @@ const SalaryCalculator = () => {
                     </div>
                     <div className="text-2xl font-bold text-foreground">
                       {formatCurrency(result.final * 225)} TL
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Second Period - 6 Month */}
+              <div className="result-highlight mt-4" style={{ background: 'linear-gradient(135deg, hsl(160 60% 45% / 0.1), hsl(210 80% 45% / 0.1))' }}>
+                <div className="text-center">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/20 rounded-full text-xs font-medium text-accent mb-3">
+                    <span>2. Dönem (6 Ay Sonra)</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-1">
+                    <Percent className="w-3.5 h-3.5" />
+                    <span>%13 Zam</span>
+                  </div>
+                  <div className="text-sm text-muted-foreground mb-1">
+                    Yeni Saat Ücretiniz
+                  </div>
+                  <div className="text-3xl font-bold text-accent">
+                    {formatCurrency(result.secondPeriodFinal)} TL
+                  </div>
+                  <div className="mt-2 text-sm text-primary font-medium">
+                    Dönem artışı: +{formatCurrency(result.secondPeriodIncrease)} TL
+                  </div>
+                  
+                  {/* Monthly Salary - Second Period */}
+                  <div className="mt-4 pt-4 border-t border-accent/20">
+                    <div className="text-sm text-muted-foreground mb-1">
+                      Tahmini Aylık Maaş <span className="text-xs">(×225 saat)</span>
+                    </div>
+                    <div className="text-2xl font-bold text-foreground">
+                      {formatCurrency(result.secondPeriodFinal * 225)} TL
+                    </div>
+                    <div className="mt-2 text-xs text-muted-foreground">
+                      Başlangıçtan toplam artış: %{result.secondPeriodTotalPercentage.toFixed(1)}
                     </div>
                   </div>
                 </div>
