@@ -40,6 +40,8 @@
 
 MIT
 
+## lovable.dev ile geliştirilmiştir.
+
 ---
 
 <p align="center">
