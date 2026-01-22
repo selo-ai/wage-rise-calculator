@@ -217,9 +217,6 @@ const SalaryCalculator = () => {
                     <div className="mt-2 text-xs text-muted-foreground">
                       Başlangıçtan toplam artış: %{result.secondPeriodTotalPercentage.toFixed(1)}
                     </div>
-                    <div className="mt-2 text-xs text-muted-foreground">
-                      Enflasyon oranı %13'ten fazla olursa tutarlar değişecektir.
-                    </div>
                   </div>
                 </div>
               </div>
@@ -243,7 +240,7 @@ const SalaryCalculator = () => {
 
         {/* Footer */}
         <p className="text-center text-xs text-muted-foreground mt-6">
-          Toplu İş Sözleşmesi Raporu'na göre hesaplanmıştır.
+          Açıklanan Toplu İş Sözleşmesi şartlarına göre hesaplanmıştır.
         </p>
       </div>
     </div>
