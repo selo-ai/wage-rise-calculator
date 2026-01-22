@@ -258,6 +258,24 @@ const SalaryCalculator = () => {
                   </div>
                 </div>
 
+                {/* 4 Aylık Toplu Ödeme */}
+                <div
+                  className="result-highlight mt-4"
+                  style={{ background: "linear-gradient(135deg, hsl(45 90% 50% / 0.1), hsl(30 90% 50% / 0.1))" }}
+                >
+                  <div className="text-center">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/20 rounded-full text-xs font-medium text-amber-600 dark:text-amber-400 mb-3">
+                      <span>4 Aylık Toplu Ödeme</span>
+                    </div>
+                    <div className="text-3xl font-bold text-amber-600 dark:text-amber-400">
+                      {formatCurrency((result.final - result.original) * 225 * 4)} TL
+                    </div>
+                    <div className="mt-2 text-xs text-muted-foreground">
+                      Aylık fark: {formatCurrency((result.final - result.original) * 225)} TL
+                    </div>
+                  </div>
+                </div>
+
                 {/* Second Period - 6 Month */}
                 <div
                   className="result-highlight mt-4"
