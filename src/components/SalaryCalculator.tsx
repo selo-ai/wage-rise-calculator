@@ -112,6 +112,11 @@ const SalaryCalculator = () => {
                 TL
               </span>
             </div>
+            {result && (
+              <div className="mt-2 text-sm text-muted-foreground">
+                Eski Maaş: <span className="font-semibold text-foreground">{formatCurrency(result.original * 225)} TL</span> <span className="text-xs">(×225 saat)</span>
+              </div>
+            )}
           </div>
 
           {/* Results */}
