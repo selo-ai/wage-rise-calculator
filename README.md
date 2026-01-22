@@ -33,14 +33,13 @@
 - ⚡ Vite
 - 🎨 Tailwind CSS
 - 🧩 shadcn/ui
+- 🙌 lovable.dev ile geliştirilmiştir.
 
 ---
 
 ## 📄 Lisans
 
 MIT
-
-## lovable.dev ile geliştirilmiştir.
 
 ---
 
