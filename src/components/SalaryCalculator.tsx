@@ -1,5 +1,5 @@
-import { useState, useMemo, useEffect } from "react";
-import { Calculator, TrendingUp, Plus, Percent, AlertTriangle, Share2, Github, Eye } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Calculator, TrendingUp, Plus, Percent, AlertTriangle, Share2, Github } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -85,15 +85,6 @@ const SalaryCalculator = () => {
   };
 
   const [showDisclaimer, setShowDisclaimer] = useState(true);
-  const [viewCount, setViewCount] = useState<number | null>(null);
-
-  // Görüntüleme sayacı - CountAPI kullanarak
-  useEffect(() => {
-    fetch('https://api.countapi.xyz/hit/tis2026.netlify.app/visits')
-      .then(res => res.json())
-      .then(data => setViewCount(data.value))
-      .catch(() => setViewCount(null));
-  }, []);
 
   return (
     <>
@@ -346,15 +337,6 @@ const SalaryCalculator = () => {
             </a>
           </div>
 
-          {/* View Counter */}
-          {viewCount !== null && (
-            <div className="text-center mt-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-secondary/50 rounded-full text-xs text-muted-foreground">
-                <Eye className="w-3.5 h-3.5" />
-                <span>{viewCount.toLocaleString('tr-TR')} görüntüleme</span>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </>
