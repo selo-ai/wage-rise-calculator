@@ -1,19 +1,5 @@
-import { useState, useMemo, useEffect } from "react";
-import { TrendingUp, Plus, Percent, Share2, AlertTriangle } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { useState, useMemo } from "react";
+import { Calculator, TrendingUp, Plus, Percent } from "lucide-react";
 
 interface CalculationResult {
   original: number;
@@ -34,7 +20,6 @@ interface CalculationResult {
 
 const SalaryCalculator = () => {
   const [hourlyWage, setHourlyWage] = useState<string>("");
-  const [disclaimerAccepted, setDisclaimerAccepted] = useState<boolean>(false);
 
   const result = useMemo<CalculationResult | null>(() => {
     const wage = parseFloat(hourlyWage.replace(",", "."));
@@ -91,96 +76,16 @@ const SalaryCalculator = () => {
   };
 
   return (
-    <>
-      {/* Disclaimer Modal */}
-      <Dialog open={!disclaimerAccepted} onOpenChange={() => {}}>
-        <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()}>
-          <DialogHeader className="text-center">
-            <div className="flex justify-center mb-4">
-              <div className="w-16 h-16 rounded-full bg-yellow-500/20 flex items-center justify-center">
-                <AlertTriangle className="w-8 h-8 text-yellow-500" />
-              </div>
-            </div>
-            <DialogTitle className="text-xl text-center">Önemli Uyarı</DialogTitle>
-            <DialogDescription className="text-center space-y-3 pt-4">
-              <p className="text-base">
-                Bu hesaplama aracı <strong>tahmini değerler</strong> üretmektedir.
-              </p>
-              <p>
-                Hesaplanan tutarlar kesinlik taşımamakta olup, gerçek değerlerle farklılıklar gösterebilir.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Kesin bilgi için lütfen sendika temsilcinize veya işvereninize danışınız.
-              </p>
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex justify-center mt-4">
-            <Button 
-              onClick={() => setDisclaimerAccepted(true)} 
-              className="w-full sm:w-auto px-8"
-            >
-              Anladım, Devam Et
-            </Button>
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <div className="w-full max-w-md">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-4">
+            <Calculator className="w-7 h-7 text-primary" />
           </div>
-        </DialogContent>
-      </Dialog>
-
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <div className="w-full max-w-md">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold text-foreground mb-2">
-              TİS2026 Zam Hesaplama Aracı
-            </h1>
-            <p className="text-muted-foreground text-sm mb-4">
-              Toplu iş sözleşmesi zam miktarını hesaplayın
-            </p>
-            
-            {/* Share Button */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Share2 className="w-4 h-4" />
-                  Hesaplama Aracını Paylaş
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="center">
-                <DropdownMenuItem
-                  onClick={() => {
-                    const text = "TİS2026 Zam Hesaplama Aracı - Türk Metal Sendikası";
-                    const url = window.location.href;
-                    window.open(`https://wa.me/?text=${encodeURIComponent(text + " " + url)}`, "_blank");
-                  }}
-                >
-                  <span className="text-green-600 mr-2">📱</span> WhatsApp
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => {
-                    const text = "TİS2026 Zam Hesaplama Aracı - Türk Metal Sendikası";
-                    const url = window.location.href;
-                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, "_blank");
-                  }}
-                >
-                  <span className="mr-2">𝕏</span> X (Twitter)
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => {
-                    const url = window.location.href;
-                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, "_blank");
-                  }}
-                >
-                  <span className="text-blue-600 mr-2">📘</span> Facebook
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => {
-                    navigator.clipboard.writeText(window.location.href);
-                  }}
-                >
-                  <span className="mr-2">📋</span> Linki Kopyala
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+          <h1 className="text-2xl font-bold text-foreground mb-2">TİS Zam Hesaplayıcı</h1>
+          <p className="text-muted-foreground text-sm">Toplu iş sözleşmesi zam miktarını hesaplayın</p>
+        </div>
 
         {/* Calculator Card */}
         <div className="calculator-card">
@@ -199,13 +104,13 @@ const SalaryCalculator = () => {
                 placeholder="Örn: 125,50"
                 className="calculator-input pr-12"
               />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">
-                TL
-              </span>
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">TL</span>
             </div>
             {result && (
               <div className="mt-2 text-sm text-muted-foreground">
-                Eski Maaş: <span className="font-semibold text-foreground">{formatCurrency(result.original * 225)} TL</span> <span className="text-xs">(×225 saat)</span>
+                Eski Maaş:{" "}
+                <span className="font-semibold text-foreground">{formatCurrency(result.original * 225)} TL</span>{" "}
+                <span className="text-xs">(×225 saat)</span>
               </div>
             )}
           </div>
@@ -225,8 +130,7 @@ const SalaryCalculator = () => {
                         <span>İyileştirme</span>
                       </div>
                       <div className="font-semibold text-foreground">
-                        +{formatCurrency(result.improvementAmount)} TL →{" "}
-                        {formatCurrency(result.afterImprovement)} TL
+                        +{formatCurrency(result.improvementAmount)} TL → {formatCurrency(result.afterImprovement)} TL
                       </div>
                     </div>
                   </div>
@@ -234,34 +138,27 @@ const SalaryCalculator = () => {
 
                 {/* Step 2 - %20 Zam */}
                 <div className="flex items-start gap-3 p-3 bg-secondary/30 rounded-xl">
-                  <div className="step-badge">
-                    {result.improvementAmount > 0 ? "2" : "1"}
-                  </div>
+                  <div className="step-badge">{result.improvementAmount > 0 ? "2" : "1"}</div>
                   <div className="flex-1">
                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-1">
                       <Percent className="w-3.5 h-3.5" />
                       <span>%20 Zam</span>
                     </div>
                     <div className="font-semibold text-foreground">
-                      +{formatCurrency(result.percentageAmount)} TL →{" "}
-                      {formatCurrency(result.afterPercentage)} TL
+                      +{formatCurrency(result.percentageAmount)} TL → {formatCurrency(result.afterPercentage)} TL
                     </div>
                   </div>
                 </div>
 
                 {/* Step 3 - Seyyanen */}
                 <div className="flex items-start gap-3 p-3 bg-secondary/30 rounded-xl">
-                  <div className="step-badge">
-                    {result.improvementAmount > 0 ? "3" : "2"}
-                  </div>
+                  <div className="step-badge">{result.improvementAmount > 0 ? "3" : "2"}</div>
                   <div className="flex-1">
                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-1">
                       <TrendingUp className="w-3.5 h-3.5" />
                       <span>Seyyanen Artış</span>
                     </div>
-                    <div className="font-semibold text-foreground">
-                      +{formatCurrency(result.flatIncrease)} TL
-                    </div>
+                    <div className="font-semibold text-foreground">+{formatCurrency(result.flatIncrease)} TL</div>
                   </div>
                 </div>
               </div>
@@ -269,27 +166,20 @@ const SalaryCalculator = () => {
               {/* Final Result */}
               <div className="result-highlight mt-4">
                 <div className="text-center">
-                  <div className="text-sm text-muted-foreground mb-1">
-                    Yeni Saat Ücretiniz
-                  </div>
-                  <div className="text-3xl font-bold text-primary">
-                    {formatCurrency(result.final)} TL
-                  </div>
+                  <div className="text-sm text-muted-foreground mb-1">Yeni Saat Ücretiniz</div>
+                  <div className="text-3xl font-bold text-primary">{formatCurrency(result.final)} TL</div>
                   <div className="mt-2 text-sm text-accent font-medium">
                     Toplam artış: +{formatCurrency(result.totalIncrease)} TL
-                    <span className="text-muted-foreground"> (</span>%
-                    {result.totalPercentageIncrease.toFixed(1)}
+                    <span className="text-muted-foreground"> (</span>%{result.totalPercentageIncrease.toFixed(1)}
                     <span className="text-muted-foreground">)</span>
                   </div>
-                  
+
                   {/* Monthly Salary */}
                   <div className="mt-4 pt-4 border-t border-primary/20">
                     <div className="text-sm text-muted-foreground mb-1">
                       Tahmini Aylık Maaş <span className="text-xs">(×225 saat)</span>
                     </div>
-                    <div className="text-2xl font-bold text-foreground">
-                      {formatCurrency(result.final * 225)} TL
-                    </div>
+                    <div className="text-2xl font-bold text-foreground">{formatCurrency(result.final * 225)} TL</div>
                     <div className="mt-2 text-sm text-accent font-medium">
                       Fark: +{formatCurrency((result.final - result.original) * 225)} TL
                     </div>
@@ -297,44 +187,25 @@ const SalaryCalculator = () => {
                 </div>
               </div>
 
-              {/* Toplu Ödenecek Fark */}
-              <div className="result-highlight mt-4" style={{ background: 'linear-gradient(135deg, hsl(45 90% 50% / 0.1), hsl(35 90% 55% / 0.1))' }}>
-                <div className="text-center">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-yellow-500/20 rounded-full text-xs font-medium text-yellow-600 dark:text-yellow-400 mb-3">
-                    <span>Toplu Ödenecek Fark</span>
-                  </div>
-                  <div className="text-sm text-muted-foreground mb-1">
-                    4 Aylık Maaş Farkı
-                  </div>
-                  <div className="text-3xl font-bold text-yellow-600 dark:text-yellow-400">
-                    {formatCurrency((result.final - result.original) * 225 * 4)} TL
-                  </div>
-                  <div className="mt-2 text-xs text-muted-foreground">
-                    ({formatCurrency((result.final - result.original) * 225)} TL × 4 ay)
-                  </div>
-                </div>
-              </div>
-
               {/* Second Period - 6 Month */}
-              <div className="result-highlight mt-4" style={{ background: 'linear-gradient(135deg, hsl(160 60% 45% / 0.1), hsl(210 80% 45% / 0.1))' }}>
+              <div
+                className="result-highlight mt-4"
+                style={{ background: "linear-gradient(135deg, hsl(160 60% 45% / 0.1), hsl(210 80% 45% / 0.1))" }}
+              >
                 <div className="text-center">
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/20 rounded-full text-xs font-medium text-accent mb-3">
-                    <span>2. Altı Ay (Mart zammı)</span>
+                    <span>2. Dönem (6 Ay Sonra)</span>
                   </div>
                   <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-1">
                     <Percent className="w-3.5 h-3.5" />
                     <span>%13 Zam</span>
                   </div>
-                  <div className="text-sm text-muted-foreground mb-1">
-                    Yeni Saat Ücretiniz
-                  </div>
-                  <div className="text-3xl font-bold text-accent">
-                    {formatCurrency(result.secondPeriodFinal)} TL
-                  </div>
+                  <div className="text-sm text-muted-foreground mb-1">Yeni Saat Ücretiniz</div>
+                  <div className="text-3xl font-bold text-accent">{formatCurrency(result.secondPeriodFinal)} TL</div>
                   <div className="mt-2 text-sm text-primary font-medium">
                     Dönem artışı: +{formatCurrency(result.secondPeriodIncrease)} TL
                   </div>
-                  
+
                   {/* Monthly Salary - Second Period */}
                   <div className="mt-4 pt-4 border-t border-accent/20">
                     <div className="text-sm text-muted-foreground mb-1">
@@ -345,6 +216,7 @@ const SalaryCalculator = () => {
                     </div>
                     <div className="mt-2 text-xs text-muted-foreground">
                       Başlangıçtan toplam artış: %{result.secondPeriodTotalPercentage.toFixed(1)}
+                      Enflasyon oranı %13'ten fazla çıkarsa tutarlar değişecektir.
                     </div>
                   </div>
                 </div>
@@ -373,7 +245,6 @@ const SalaryCalculator = () => {
         </p>
       </div>
     </div>
-    </>
   );
 };
 
