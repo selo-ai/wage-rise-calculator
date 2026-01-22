@@ -194,16 +194,6 @@ const SalaryCalculator = () => {
                     <div className="text-2xl font-bold text-foreground">
                       {formatCurrency(result.final * 225)} TL
                     </div>
-                    
-                    {/* Social Assistance */}
-                    <div className="mt-3 pt-3 border-t border-primary/10">
-                      <div className="text-sm text-muted-foreground mb-1">
-                        Sosyal Yardım Dahil <span className="text-xs">(%31,5)</span>
-                      </div>
-                      <div className="text-xl font-bold text-accent">
-                        {formatCurrency(result.final * 225 + result.original * 225 * 0.315)} TL
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
