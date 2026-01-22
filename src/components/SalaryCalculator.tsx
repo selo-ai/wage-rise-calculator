@@ -199,6 +199,9 @@ const SalaryCalculator = () => {
                     <div className="text-2xl font-bold text-foreground">
                       {formatCurrency(result.final * 225)} TL
                     </div>
+                    <div className="mt-2 text-sm text-accent font-medium">
+                      Fark: +{formatCurrency((result.final - result.original) * 225)} TL
+                    </div>
                   </div>
                 </div>
               </div>
