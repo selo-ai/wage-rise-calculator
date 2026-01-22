@@ -108,7 +108,7 @@ const SalaryCalculator = () => {
                 Hesaplamalar kesinlik taşımamaktadır!
               </p>
               <p>
-                Gerçek maaş değerleri ile farklılıklar olabilir. Kesin bilgi için lütfen İnsan Kaynakları veya yetkili birimlerle iletişime geçiniz.
+                Gerçek maaş değerleri ile farklılıklar olabilir. Kesin bilgi için lütfen sendika temsilciniz ile iletişime geçiniz.
               </p>
             </AlertDialogDescription>
           </AlertDialogHeader>
