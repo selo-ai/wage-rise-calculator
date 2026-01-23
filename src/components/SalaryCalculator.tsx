@@ -365,3 +365,4 @@ const SalaryCalculator = () => {
 };
 
 export default SalaryCalculator;
+ 

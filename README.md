@@ -46,3 +46,4 @@ MIT
 <p align="center">
   <a href="https://github.com/selo-ai/wage-rise-calculator">⭐ GitHub'da Yıldızlayın</a>
 </p>
+ 
