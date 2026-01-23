@@ -31,7 +31,22 @@ const SalaryCalculator = () => {
   const [hourlyWage, setHourlyWage] = useState<string>("");
 
   const result = useMemo<CalculationResult | null>(() => {
-    const wage = parseFloat(hourlyWage.replace(",", "."));
+    // Robust parsing: handle different keyboard inputs and locales
+    let cleanValue = hourlyWage
+      .replace(/\s/g, '') // Remove all whitespace (including non-breaking spaces)
+      .replace(/[,،٫，﹐﹑·]/g, '.') // Replace various comma/decimal chars with period
+      .replace(/[^\d.]/g, ''); // Keep only digits and periods
+
+    // Handle multiple periods (thousand separators)
+    // Keep only the last period as decimal separator
+    const periodCount = (cleanValue.match(/\./g) || []).length;
+    if (periodCount > 1) {
+      const lastPeriodIndex = cleanValue.lastIndexOf('.');
+      cleanValue = cleanValue.substring(0, lastPeriodIndex).replace(/\./g, '') +
+        cleanValue.substring(lastPeriodIndex);
+    }
+
+    const wage = parseFloat(cleanValue);
     if (isNaN(wage) || wage <= 0) return null;
 
     // Step 1: İyileştirme (140 TL altındakilere 10 TL, max 140 TL)
