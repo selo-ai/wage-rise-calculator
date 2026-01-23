@@ -116,6 +116,9 @@ const SalaryCalculator = () => {
               Önemli Uyarı
             </AlertDialogTitle>
             <AlertDialogDescription className="text-center space-y-3">
+              <p className="font-medium text-foreground">
+                Bu resmi bir hesaplama aracı değildir, bir amme hizmetidir.
+              </p>
               <p className="text-base">
                 Bu hesaplayıcı <strong>tahmini değerler</strong> sunmaktadır.
               </p>
@@ -124,6 +127,9 @@ const SalaryCalculator = () => {
               </p>
               <p>
                 Gerçek maaş değerleri ile farklılıklar olabilir. Kesin bilgi için lütfen sendika temsilciniz ile iletişime geçiniz.
+              </p>
+              <p className="text-xs text-muted-foreground pt-2">
+                * Hesaplama çalışmayan bazı telefonlar için geliştirmeler yapıldı.
               </p>
             </AlertDialogDescription>
           </AlertDialogHeader>
