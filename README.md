@@ -11,7 +11,7 @@
 - 🌸 **Mart Enflasyonu Hesaplama** - %16,29'luk Mart enflasyon zammını anında görün
 - 📊 **TİS2026 Detaylı Hesaplama** - İyileştirme, yüzdelik zam ve seyyanen artış adım adım gösterilir
 - 💰 **4 Aylık Toplu Ödeme** - Geriye dönük fark hesaplaması
-- 📅 **2. Dönem Tahmini** - 6 ay sonrası için %16,29 zam hesabı
+- 📅 **2. Dönem Zammı** - 6 ay sonrası için %16,29 zam hesabı
 - 📱 **Mobil Uyumlu** - Her cihazda mükemmel görünüm
 - 🔗 **Kolay Paylaşım** - Tek tıkla arkadaşlarınızla paylaşın
 
